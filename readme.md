@@ -8,18 +8,6 @@
 $ npm install --global https://github.com/BRAVO68WEB/htb-cli.git
 ```
 
-## CLI
+### INDEV
 
-```
-$ htb-cli --help
-
-  Usage
-    $ htb-cli
-
-  Options
-    --name  Your name
-
-  Examples
-    $ htb-cli --name=Jane
-    Hello, Jane
-```
+> This is a work in progress, so expect frequent changes.
