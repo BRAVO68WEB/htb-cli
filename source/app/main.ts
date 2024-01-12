@@ -10,13 +10,23 @@ export default class HTB {
 		this.HTBBase.setAccessToken(token ?? '')
 	}
 
-    public init = async (username: string, password: string) => {
-        await this.HTBBase.login(
+    public init = async (username: string, password: string): Promise<IHTBLoginResponse> => {
+        const login_response = await this.HTBBase.login(
 			username,
 			password
 		)
-		return this.HTBBase.accessCreds()
+		return login_response
     }
+
+	public auth2FA = async (otp: string): Promise<boolean> => {
+		try {
+			await this.HTBBase.otp_submit(otp)
+			return true
+		}
+		catch(err) {
+			return false
+		}
+	}
 
 	public fetchWhoAmI = async () : Promise<IHTBWhoAmIInfo> => {
 		try {

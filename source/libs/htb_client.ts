@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const htbClient = (token: string) => {
+const htbClient = (token?: string) => {
     return axios.create({
         baseURL: 'https://labs.hackthebox.com/api/v4/',
         timeout: 10000,

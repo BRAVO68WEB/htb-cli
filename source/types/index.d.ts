@@ -272,3 +272,11 @@ interface IHTBStartArenaMachineResponse {
 	status: number,
 	message: string
 }
+
+interface IHTBLoginResponse {
+	message: {
+		is2FAEnabled: boolean,
+		access_token: string,
+		refresh_token: string,
+	}
+}
