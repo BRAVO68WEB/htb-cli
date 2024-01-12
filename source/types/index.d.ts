@@ -219,3 +219,56 @@ interface IHTBSubmitFlagResponse {
 	status: number,
 	message: string
 }
+
+interface IHTBArenaMachineInfo  {
+	data: {
+		id: number,
+		name: string,
+		os: string,
+		production: number,
+		release: string,
+		points: number,
+		static_points: number,
+		user_own_points: number,
+		root_own_points: number,
+		user_blood_points: number,
+		root_blood_points: number,
+		poweroff: number,
+		retired: number,
+		maker_id: number,
+		unknown: boolean,
+		is_released: boolean,
+		avatar: string,
+		difficulty_text: string,
+		release_time: string,
+		is_owned_root: boolean,
+		is_owned_user: boolean,
+		root_points: number,
+		user_points: number,
+		is_user_blood: boolean,
+		is_root_blood: boolean,
+		active: boolean,
+		creator: IHTBArenaMachineCreator[],
+		cocreators: IHTBArenaMachineCreator[],
+		play_info: {
+			is_spawned: null | boolean,
+			is_spawning: null | boolean,
+			is_active: boolean | null,
+			active_player_count: null | number,
+			expires_at: null | string
+	  	},
+		ip: null | string,
+		info_status: null | any
+	}
+}
+
+interface IHTBArenaMachineCreator {
+	id: number,
+	name: string,
+	avatar: string
+}
+
+interface IHTBStartArenaMachineResponse {
+	status: number,
+	message: string
+}

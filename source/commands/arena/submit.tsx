@@ -22,8 +22,7 @@ const List = ({options} : Props) => {
 	useEffect(() => {
 		const token = store.get('token') as string;
 		const htbUser = new HTB(token);
-		htbUser.submitFlag(
-			options.id,
+		htbUser.submitArenaFlag(
 			options.flag,
 		).then((submit) => {
 			setFlagResponse(submit);

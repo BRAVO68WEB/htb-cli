@@ -1,5 +1,6 @@
 import BaseClass from "./base.js"
 import htbClient from "../libs/htb_client.js";
+import { AxiosError } from "axios";
 
 export default class HTB {
     private HTBBase: BaseClass;
@@ -25,8 +26,8 @@ export default class HTB {
 			return data
 		}
 		catch(err) {
-			if(err instanceof Error) {
-				throw new Error(err.message)
+			if(err instanceof AxiosError) {
+				throw new Error(err.response?.data.message ?? err.message)
 			}
 			else
 				throw new Error("Unknown error")
@@ -41,8 +42,8 @@ export default class HTB {
 			return data
 		}
 		catch(err) {
-			if(err instanceof Error) {
-				throw new Error(err.message)
+			if(err instanceof AxiosError) {
+				throw new Error(err.response?.data.message ?? err.message)
 			}
 			else
 				throw new Error("Unknown error")
@@ -57,8 +58,8 @@ export default class HTB {
 			return data as IHTBMachinesList
 		}
 		catch(err) {
-			if(err instanceof Error) {
-				throw new Error(err.message)
+			if(err instanceof AxiosError) {
+				throw new Error(err.response?.data.message ?? err.message)
 			}
 			else
 				throw new Error("Unknown error")
@@ -73,8 +74,8 @@ export default class HTB {
 			return data
 		}
 		catch(err) {
-			if(err instanceof Error) {
-				throw new Error(err.message)
+			if(err instanceof AxiosError) {
+				throw new Error(err.response?.data.message ?? err.message)
 			}
 			else
 				throw new Error("Unknown error")
@@ -92,8 +93,58 @@ export default class HTB {
 			return data
 		}
 		catch(err) {
-			if(err instanceof Error) {
-				throw new Error(err.message)
+			if(err instanceof AxiosError) {
+				throw new Error(err.response?.data.message ?? err.message)
+			}
+			else
+				throw new Error("Unknown error")
+		}
+	}
+
+	public submitArenaFlag = async (flag: string) : Promise<IHTBSubmitFlagResponse> => {
+		try {
+			const { data } = await htbClient(this.HTBBase.accessCreds())
+				.post("/arena/own", {
+					flag,
+				})
+
+			return data
+		}
+		catch(err) {
+			if(err instanceof AxiosError) {
+				throw new Error(err.response?.data.message ?? err.message)
+			}
+			else
+				throw new Error("Unknown error")
+		}
+	}
+
+	public fetchArenaMachineInfo = async () : Promise<IHTBArenaMachineInfo> => {
+		try {
+			const { data } = await htbClient(this.HTBBase.accessCreds())
+				.get("/season/machine/active")
+
+			return data
+		}
+		catch(err) {
+			if(err instanceof AxiosError) {
+				throw new Error(err.response?.data.message ?? err.message)
+			}
+			else
+				throw new Error("Unknown error")
+		}
+	}
+
+	public startArenaMachine = async () : Promise<IHTBStartArenaMachineResponse> => {
+		try {
+			const { data } = await htbClient(this.HTBBase.accessCreds())
+				.post("/arena/start")
+
+			return data
+		}
+		catch(err) {
+			if(err instanceof AxiosError) {
+				throw new Error(err.response?.data.message ?? err.message)
 			}
 			else
 				throw new Error("Unknown error")

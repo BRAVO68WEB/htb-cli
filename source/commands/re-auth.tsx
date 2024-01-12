@@ -1,26 +1,21 @@
 import React, {useState, useEffect} from 'react';
 import { Text } from 'ink';
-import zod from 'zod';
 
 import HTB from '../app/main.js';
 import { store } from '../libs/config.js';
 
-export const options = zod.object({
-	email: zod.string().describe('Email'),
-	password: zod.string().describe('Password'),
-});
-
-type Props = {
-	options: zod.infer<typeof options>;
-};
-
-const Auth = ({options}: Props) => {
+const Auth = () => {
 	const [loading, setLoading] = useState(true);
-	const userName = options.email || '';
-	const password = options.password || '';
+	const userName = store.get('email') as string;
+	const password = store.get('password') as string;
 
-	store.set('email', userName);
-	store.set('password', password);
+	if(!userName || !password) {
+		return (
+			<Text color={'red'}>
+				You are not logged in. Please login first.
+			</Text>
+		);
+	}
 
 	const htbUser = new HTB();
 
