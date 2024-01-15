@@ -7,7 +7,6 @@ import { store } from '../../libs/config.js';
 
 export const options = zod.object({
 	flag: zod.string().describe('Flag'),
-	id: zod.string().describe('Machine ID'),
 });
 
 type Props = {
