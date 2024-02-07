@@ -280,3 +280,75 @@ interface IHTBLoginResponse {
 		refresh_token: string,
 	}
 }
+
+interface IHTBVpnInfoResponse {
+	data: {
+		lab: {
+			can_access: boolean,
+			location_type_friendly: string,
+			assigned_server: {
+				id: number,
+				friendly_name: string,
+				current_clients: number,
+				location: string
+			} | null
+		},
+		starting_point: {
+			can_access: boolean,
+			location_type_friendly: string,
+			assigned_server: {
+				id: number,
+				friendly_name: string,
+				current_clients: number,
+				location: string
+			} | null;
+		},
+		endgames: {
+			can_access: boolean,
+			location_type_friendly: string,
+			assigned_server: {
+				id: number,
+				friendly_name: string,
+				current_clients: number,
+				location: string
+			} | null;
+		}
+		fortresses: {
+			can_access: boolean,
+			location_type_friendly: string,
+			assigned_server: {
+				id: number,
+				friendly_name: string,
+				current_clients: number,
+				location: string
+			} | null;
+		},
+		pro_labs: {
+			can_access: boolean,
+			location_type_friendly: string,
+			assigned_server: {
+				id: number,
+				friendly_name: string,
+				current_clients: number,
+				location: string
+			} | null;
+		},
+		competitive: {
+			can_access: boolean,
+			location_type_friendly: string,
+			assigned_server: {
+				id: number,
+				friendly_name: string,
+				current_clients: number,
+				location: string
+			} | null;
+			available:	true,
+			machine: {
+				id: number,
+				name: string,
+				avatar_thumb_url: string,
+			}
+		},
+	}
+	status: boolean
+}
