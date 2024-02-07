@@ -14,6 +14,7 @@
 - [x] Arena start
 - [x] Arena submit
 - [x] Re-login, if token expired
+- [x] VPN Info
 
 ## Install
 
