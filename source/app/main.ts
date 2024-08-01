@@ -63,9 +63,35 @@ export default class HTB {
 	public fetchMachines = async () : Promise<IHTBMachinesList> => {
 		try {
 			const { data } = await htbClient(this.HTBBase.accessCreds())
-				.get("/machine/paginated")
+				.get("/machine/paginated?per_page=100")
 
 			return data as IHTBMachinesList
+		}
+		catch(err) {
+			if(err instanceof AxiosError) {
+				throw new Error(err.response?.data.message ?? err.message)
+			}
+			else
+				throw new Error("Unknown error")
+		}
+	}
+
+	public fetchUnreleasedMachines = async () : Promise<IHTBUnRelMachinesList> => {
+		try {
+			const { data } : {
+				data: IHTBUnRelMachinesList
+			} = await htbClient(this.HTBBase.accessCreds())
+				.get("/machine/unreleased")
+
+			data.data.map((machine) => {
+				machine.retiring_avatar = machine.retiring.avatar
+				machine.retiring_difficulty_text = machine.retiring.difficulty_text
+				machine.retiring_id = machine.retiring.id
+				machine.retiring_name = machine.retiring.name
+				machine.retiring_os = machine.retiring.os
+			})
+
+			return data;
 		}
 		catch(err) {
 			if(err instanceof AxiosError) {

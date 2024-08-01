@@ -6,9 +6,7 @@ import HTB from '../app/main.js';
 import { store } from '../libs/config.js';
 
 export const options = zod.object({
-	email: zod.string().describe('Email'),
-	password: zod.string().describe('Password'),
-	otp: zod.string().optional().describe('OTP'),
+	token: zod.string().optional().describe('API Token'),
 });
 
 type Props = {
@@ -17,62 +15,25 @@ type Props = {
 
 const Auth = ({options}: Props) => {
 	const [loading, setLoading] = useState(true);
-	const [was2FaEnabled, setWas2FaEnabled] = useState(false);
-	const userName = options.email || '';
-	const password = options.password || '';
-	const otp = options.otp ?? '';
+	const apiToken = options.token ?? '';
 
-	store.set('email', userName);
-	store.set('password', password);
+	store.set('token', apiToken);
 
-	const htbUser = new HTB();
+	const htbUser = new HTB(
+		apiToken
+	);
 
 	useEffect(() => {
-		htbUser.init(
-			userName,
-			password,
-		).then((token) => {
-			store.set('token', token.message.access_token);
-			if(token.message.is2FAEnabled) {
-				setWas2FaEnabled(true);
-				if(!otp) {
-					setLoading(false);
-				}
-				else {
-					htbUser.auth2FA(otp).then(() => {
-						setWas2FaEnabled(false);
-						setLoading(false);
-					})
-				}
-			}else {
-				setLoading(false);
-			}
+		htbUser.fetchWhoAmI(
+		).then((data) => {
+			data.info.email ? setLoading(false) : setLoading(true);
 		})
 	}, []);
-
-	// return (
-	// 	<Text>
-	// 		{loading ? <Text>
-	// 				Login <Text color="cyan"> in-progress .. </Text>
-	// 			</Text> :
-	// 			<Text>
-	// 				Login <Text color="green"> success !! </Text>
-	// 			</Text>
-	// 		}
-	// 	</Text>
-	// );
 
 	if(loading) {
 		return (
 			<Text>
 				<Text color="cyan"> Login in-progress .. </Text>
-			</Text>
-		);
-	}
-	else if(was2FaEnabled) {
-		return (
-			<Text>
-				<Text color="red"> 2FA is enabled. Please login using 2FA command. </Text>
 			</Text>
 		);
 	}

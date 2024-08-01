@@ -71,6 +71,34 @@ interface IHTBWhoAmIInfo {
     }
 }
 
+interface IHTBUnRelMachines {
+	id: number,
+	name: string,
+	os: string,
+	avatar: string,
+	release: string,
+	difficulty: number,
+	difficulty_text: string,
+	firstCreator: IHTBMachineMaker[],
+	coCreators: IHTBMachineMaker[],
+	retiring: {
+		id: number,
+		name: string,
+		avatar: string,
+		os: string,
+		difficulty_text: string,
+	},
+	retiring_id?: number,
+	retiring_name?: string,
+	retiring_avatar?: string,
+	retiring_os?: string,
+	retiring_difficulty_text?: string,
+}
+
+interface IHTBUnRelMachinesList {
+	data: IHTBUnRelMachines[],
+}
+
 interface IHTBMachinesList {
 	data: IHTBMachines[],
 }
@@ -128,7 +156,7 @@ interface IHTBMachineMaker {
 	id: number,
 	name: string,
 	avatar: string,
-	isRespected: boolean
+	isRespected?: boolean
 }
 
 interface IHTBMachineProfile {

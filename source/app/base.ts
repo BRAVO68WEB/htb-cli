@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import htbClient from "../libs/htb_client.js";
+import { htbAccountClient } from "../libs/htb_client.js";
 
 export default class BaseHTB {
     private access_token: string;
@@ -26,8 +26,8 @@ export default class BaseHTB {
 
 	public otp_submit = async (otp: string): Promise<string> => {
 		try {
-			const { data } = await htbClient(this.access_token)
-				.post("/2fa/login", {
+			const { data } = await htbAccountClient(this.access_token)
+				.post("/auth/two-factor-challenge", {
 					one_time_password: otp
 				}
 			);
@@ -50,8 +50,8 @@ export default class BaseHTB {
     public getAccessToken = async (email: string, password: string): Promise<IHTBLoginResponse> => {
 		return new Promise(async function(resolve, reject) {
 			try {
-                const { data } = await htbClient()
-                    .post("/login", {
+                const { data } = await htbAccountClient()
+                    .post("/auth/login", {
                         email,
                         password,
                         remember: true
