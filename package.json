@@ -35,5 +35,6 @@
 		"ts-node": "^10.9.1",
 		"typescript": "^5.0.3"
 	},
-	"prettier": "@vdemedes/prettier-config"
+	"prettier": "@vdemedes/prettier-config",
+	"packageManager": "pnpm@9.6.0"
 }

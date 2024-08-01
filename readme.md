@@ -4,16 +4,16 @@
 
 ## Features
 
-- [x] Login (+2fa)
+- [x] Login with API Token
 - [x] Machine list
 - [x] Machine info
+- [x] Machine list (Upcoming)
 - [x] Machine Flag submit
 - [x] Profile
 - [x] Whoami
 - [x] Arena info
 - [x] Arena start
 - [x] Arena submit
-- [x] Re-login, if token expired
 - [x] VPN Info
 
 ## Install

@@ -40,11 +40,21 @@ const Info = ({options} : Props) => {
 	else if (machine) {
 		return (
 			<Text>
-				<Text color="green"> {machine.info.name} </Text>
-				<Text color="white"> {machine.info.ip} </Text>
-				<Text color="red"> {machine.info.difficultyText} </Text>
-				<Text color="cyan"> {machine.info.os} </Text>
-				<Text color="yellow"> {machine.info.points} </Text>
+				<Text color="green">Name : {machine.info.name} {"\n"}</Text>
+				<Text color="white">IP : {machine.info.ip ?? 'X.X.X.X'} {"\n"}</Text>
+				<Text color="red">Difficulty : {machine.info.difficultyText} {"\n"}</Text>
+				<Text color="cyan">OS : {machine.info.os} {"\n"}</Text>
+				<Text color="yellow">Points : {machine.info.points} {"\n"}</Text>
+				<Text color="blue">
+					User Flag : {
+						machine.info.authUserInUserOwns ? 'Owned ' : ' '
+					} {"\n"}
+				</Text>
+				<Text color="magenta">
+					Root Flag : {
+						machine.info.authUserInRootOwns ? 'Owned ' : ' '
+					}
+				</Text>
 			</Text>
 		)
 	}

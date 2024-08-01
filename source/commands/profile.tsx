@@ -9,14 +9,6 @@ const Profile = () => {
 	const [loading, setLoading] = useState(true);
 	const token = store.get('token') as string;
 
-	if(!token) {
-		return (
-			<Text color={'red'}>
-				You are not logged in. Please login first.
-			</Text>
-		);
-	}
-
 	const htbUser = new HTB(token);
 
 	useEffect(() => {
@@ -27,6 +19,15 @@ const Profile = () => {
 			setLoading(false);
 		});
 	}, []);
+
+	if(!token) {
+		return (
+			<Text color={'red'}>
+				You are not logged in. Please login first.
+			</Text>
+		);
+	}
+
 
 	if(loading) {
 		return (

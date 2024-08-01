@@ -5,14 +5,14 @@ import Table from '../../components/table.js';
 import HTB from '../../app/main.js';
 import { store } from '../../libs/config.js';
 
-const List = () => {
-	const [machines, setMachines] = useState<IHTBMachines[]>([]);
+const Upcoming = () => {
+	const [machines, setMachines] = useState<IHTBUnRelMachines[]>([]);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const token = store.get('token') as string;
 		const htbUser = new HTB(token);
-		htbUser.fetchMachines().then((machines) => {
+		htbUser.fetchUnreleasedMachines().then((machines) => {
 			setMachines(machines.data);
 			setLoading(false);
 		})
@@ -26,18 +26,19 @@ const List = () => {
 		);
 	}
 
-	const TableHeader = (props: any) => <Text {...props} />;
-    const TableCell = (props: any) => <Text {...props} />;
+	const CellComponent = (props: any) => {
+		return <Text {...props} />;
+	};
 
 	return (
 		<Table
 			data={machines as any}
-			columns={['id', 'name', 'os', 'difficultyText', 'user_owns_count', 'root_owns_count', 'authUserInUserOwns', 'authUserInRootOwns']}
+			columns={['id', 'name', 'os', 'difficulty_text', 'difficulty', 'retiring_name']}
 			padding={1}
-			header={TableHeader}
-			cell={TableCell}
+			header={CellComponent}
+			cell={CellComponent}
 		/>
 	)
 }
 
-export default List;
+export default Upcoming;

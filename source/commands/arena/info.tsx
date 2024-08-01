@@ -40,7 +40,7 @@ const Info = () => {
 	else {
 		return (
 			<Text>
-				<Text color="red"> Machine not found </Text>
+				<Text color="red"> Session not started / Machine not found </Text>
 			</Text>
 		)
 	}
