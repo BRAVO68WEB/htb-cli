@@ -186,4 +186,20 @@ export default class HTB {
 				throw new Error("Unknown error")
 		}
 	}
+
+	public fetchVPNInfo = async () : Promise<IHTBVpnInfoResponse> => {
+		try {
+			const { data } = await htbClient(this.HTBBase.accessCreds())
+				.get("/connections")
+
+			return data
+		}
+		catch(err) {
+			if(err instanceof AxiosError) {
+				throw new Error(err.response?.data.message ?? err.message)
+			}
+			else
+				throw new Error("Unknown error")
+		}
+	}
 }

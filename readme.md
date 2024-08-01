@@ -14,6 +14,7 @@
 - [x] Arena info
 - [x] Arena start
 - [x] Arena submit
+- [x] VPN Info
 
 ## Install
 
