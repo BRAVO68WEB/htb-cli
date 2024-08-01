@@ -35,19 +35,19 @@ const Info = () => {
 				</Text>
 				<Text>
 					<Text color="blue"> Labs </Text>
-					<Text color="white"> {vpnInfo?.data.lab.location_type_friendly ?? "N/A"} </Text>
+					<Text color="white"> {vpnInfo?.data.lab?.location_type_friendly ?? "N/A"} </Text>
 				</Text>
 				<Text>
 					<Text color="cyan"> Starting Point </Text>
-					<Text color="white"> {vpnInfo?.data.starting_point.location_type_friendly ?? "N/A"} </Text>
+					<Text color="white"> {vpnInfo?.data.starting_point?.location_type_friendly ?? "N/A"} </Text>
 				</Text>
 				<Text>
 					<Text color="magenta"> Pro Labs </Text>
-					<Text color="white"> {vpnInfo?.data.pro_labs.location_type_friendly ?? "N/A"} </Text>
+					<Text color="white"> {vpnInfo?.data.pro_labs?.location_type_friendly ?? "N/A"} </Text>
 				</Text>
 				<Text>
 					<Text color="red"> Endgames </Text>
-					<Text color="white"> {vpnInfo?.data.endgames.location_type_friendly ?? "N/A"} </Text>
+					<Text color="white"> {vpnInfo?.data.endgames?.location_type_friendly ?? "N/A"} </Text>
 				</Text>
 				<Text>
 					<Text color="yellow"> Fortresses </Text>
