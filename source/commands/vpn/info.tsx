@@ -31,7 +31,7 @@ const Info = () => {
 			<>
 				<Text>
 					<Text color="green"> Competitive </Text>
-					<Text color="white"> {vpnInfo?.data.competitive.location_type_friendly ?? "N/A"} </Text>
+					<Text color="white"> {vpnInfo?.data.competitive?.location_type_friendly ?? "N/A"} </Text>
 				</Text>
 				<Text>
 					<Text color="blue"> Labs </Text>
